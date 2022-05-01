@@ -9,6 +9,10 @@ public class Die {
     Die(){
         this(6,1);
     }
+    public int roll(){
+        int random = Main.rnd.nextInt(max-min+1);
+        return random+min;
+    }
     public int getMax() {
         return max;
     }

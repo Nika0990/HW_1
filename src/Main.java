@@ -8,9 +8,6 @@ import java.util.Scanner;
 public class Main {
     public static Random rnd;       // Note: Do not change this line.
     public static Scanner scanner;  // Note: Do not change this line.
-
-    public enum Colors {RED,BLUE,GREEN,YELLOW,ORANGE};
-
     public static void main(String[] args) throws IOException {
         String path = args[0];
         scanner = new Scanner(new File(path));
