@@ -2,7 +2,7 @@ public class Snake {
     private int  tail;
     private int head;
 
-    Snake(int tail, int head){
+    public Snake(int tail, int head){
         this.tail = tail;
         this.head = head;
 

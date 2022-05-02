@@ -2,11 +2,11 @@ public class Die {
   private int min;
   private int max;
 
-    Die(int max,int min){
+    public Die(int max,int min){
         this.min = min;
         this.max = max;
     }
-    Die(){
+    public Die(){
         this(6,1);
     }
     public int roll(){
