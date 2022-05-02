@@ -17,11 +17,11 @@ public class Ladder {
         this.bottom = bottom;
     }
 
-    public int getTop() {
+    public int getLength() {
         return length;
     }
 
-    public void setTop(int top) {
-        this.length = top;
+    public void setLength(int length) {
+        this.length = length;
     }
 }

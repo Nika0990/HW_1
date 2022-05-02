@@ -2,6 +2,7 @@ public class Square {
     private int coordinate;
     private boolean isSnakeHead;
     private boolean isLadderBottom;
+
     public Square (int coordinate){
          this.coordinate = coordinate;
          isSnakeHead = false;

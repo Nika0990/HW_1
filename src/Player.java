@@ -1,7 +1,7 @@
 public class Player {
     private String playerName;
     private GamePiece piece;
-    public Player(String playerName, GamePiece.Colors color){
+    public Player(String playerName, Colors color){
         this.playerName = playerName;
         this.piece = new GamePiece(color);
     }

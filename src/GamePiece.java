@@ -1,5 +1,5 @@
 public class GamePiece {
-    public enum Colors {RED,BLUE,GREEN,YELLOW,ORANGE};
+
     private Colors color;
     private int currentLocation;
     public GamePiece(Colors color){
