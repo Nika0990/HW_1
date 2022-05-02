@@ -1,9 +1,9 @@
 public class Snake {
-    private int  tail;
+    private int  length;
     private int head;
 
     public Snake(int tail, int head){
-        this.tail = tail;
+        this.length = tail;
         this.head = head;
 
     }
@@ -17,11 +17,11 @@ public class Snake {
     }
 
     public int getTail() {
-        return tail;
+        return length;
     }
 
     public void setTail(int tail) {
-        this.tail = tail;
+        this.length = tail;
     }
 
 }

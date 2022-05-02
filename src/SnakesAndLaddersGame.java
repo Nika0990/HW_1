@@ -7,7 +7,8 @@ public class SnakesAndLaddersGame {
     public SnakesAndLaddersGame(){
         this.die = new Die();
     }
-    public void initializeGame(){
 
+    public void initializeGame(){
+        GameBoard gameBoard = new GameBoard();
     }
 }

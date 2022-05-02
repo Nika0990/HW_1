@@ -1,9 +1,9 @@
 public class Ladder {
-    private int top;
+    private int length;
     private int bottom;
 
     public Ladder(int top, int bottom){
-        this.top = top;
+        this.length = top;
 
         this.bottom = bottom;
 
@@ -18,10 +18,10 @@ public class Ladder {
     }
 
     public int getTop() {
-        return top;
+        return length;
     }
 
     public void setTop(int top) {
-        this.top = top;
+        this.length = top;
     }
 }

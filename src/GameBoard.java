@@ -6,20 +6,51 @@ public class GameBoard {
     private int numberOfSnakes = 0;
     private int numberOfLadders = 0;
     public GameBoard(){
-        for(int i = 0; i<BOARD_SIZE; i++){
+        for(int i = 1; i<= BOARD_SIZE; i++){
             gameBoard[i] = new Square(i);
         }
     }
-    public void addSnake(int tail, int head){
-        snakes [numberOfSnakes] = new Snake(tail, head);
-        gameBoard [head].setSnakeHead(true);
-        gameBoard [tail].setSnakeTail(true);
-        numberOfSnakes++;
+    public void addSnake(int length, int head){
+        if(head<=0 || head > BOARD_SIZE) {
+            System.out.println("The square is not within the board's boundaries!");
+        }
+        else if(head == BOARD_SIZE){
+            System.out.println("You cannot add a snake in the last square!");
+        }
+        else if ((head - length) <= 0){
+            System.out.println("The snake is too long!");
+        }
+        else if (gameBoard[head].isSnakeHead()){
+            System.out.println("This square contains a head of a snake!");
+        }
+        else if (gameBoard[head].isLadderBottom()){
+            System.out.println("This square already contains a bottom of a ladder!");
+        }
+        else {
+            snakes[numberOfSnakes] = new Snake(length, head);
+            gameBoard[head].setSnakeHead(true);
+            numberOfSnakes++;
+        }
+
     }
-    public void addLadder(int top, int bottom){
-        ladders [numberOfLadders] = new Ladder(top, bottom);
-        gameBoard [bottom].setLadderBottom(true);
-        gameBoard [top].setLadderTop(true);
-        numberOfLadders++;
+
+    public void addLadder(int length, int bottom){
+        if(bottom<=0 || bottom > BOARD_SIZE) {
+            System.out.println("The square is not within the board's boundaries!");
+        }
+        else if ((bottom + length) >= BOARD_SIZE){
+            System.out.println("The ladder is too long!");
+        }
+        else if (gameBoard[bottom].isLadderBottom()){
+            System.out.println("This square already contains a bottom of a ladder!");
+        }
+        else if (gameBoard[bottom].isSnakeHead()){
+            System.out.println("This square contains a head of a snake!");
+        }
+        else{
+            ladders[numberOfLadders] = new Ladder(length, bottom);
+            gameBoard[bottom].setLadderBottom(true);
+            numberOfLadders++;
+        }
     }
 }
