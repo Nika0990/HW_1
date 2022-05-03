@@ -41,12 +41,55 @@ public class SnakesAndLaddersGame {
         takenNames[countPlayers] = name;
         takenColors[countPlayers] = color;
         countPlayers++;
-        return;
     }
-
     public void initializeGame(){
         GameBoard gameBoard = new GameBoard();
-    }
+        while(true) {
+            String[] input = new String[4];
+            String stringInput = Main.scanner.nextLine();
+            input = stringInput.split(" ");
+            if (input[0].equals("end")) {
+                if (countPlayers < 2) {
+                    System.out.println("Cannot start the game, there are less than two players!");
+                    continue;
+                }
+                else return;
+            }
+            if (input[1].equals("player")) {
+                Colors color = null; //check
+                switch (input[3]) {
+                    case "red":
+                        color = Colors.RED;
+                        break;
+                    case "yellow":
+                        color = Colors.YELLOW;
+                        break;
+                    case "green":
+                        color = Colors.GREEN;
+                        break;
+                    case "blue":
+                        color = Colors.BLUE;
+                        break;
+                    case "orange":
+                        color = Colors.ORANGE;
+                        break;
+                }
+                addPlayer(input[2], color);
+            }
+            if (input[1].equals("ladder")) {
+                int len = Integer.parseInt(input[2]);
+                int squareNumber = Integer.parseInt(input[3]);
+                gameBoard.addLadder(len, squareNumber);
+            }
+            if (input[1].equals("snake")) {
+                int len = Integer.parseInt(input[2]);
+                int squareNumber = Integer.parseInt(input[3]);
+                gameBoard.addSnake(len, squareNumber);
+            }
+        }
+
+        }
+
 
     public String start(){
 

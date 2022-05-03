@@ -2,8 +2,8 @@ public class GameBoard {
     private final static int BOARD_SIZE = 100;
 
     private Square gameBoard[] = new Square[BOARD_SIZE];
-    private Snake snakes[] = new Snake [50];
-    private Ladder ladders[] = new Ladder [50];
+    private Snake snakes[] = new Snake [BOARD_SIZE];
+    private Ladder ladders[] = new Ladder [BOARD_SIZE];
     private int numberOfSnakes = 0;
     private int numberOfLadders = 0;
 
