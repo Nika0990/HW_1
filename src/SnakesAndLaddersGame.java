@@ -116,7 +116,7 @@ public class SnakesAndLaddersGame {
         int movesCounter = 1;
         while(true){
             System.out.println("------------------------- Round number "
-                    + movesCounter + "-------------------------");
+                    + movesCounter + " -------------------------");
             movesCounter++;
             for(int i = 0; i < countPlayers; i++){
                 if(!previousMove)
@@ -130,8 +130,17 @@ public class SnakesAndLaddersGame {
                 }
                 if(move  == LAST_SQUARE){
                     printPath(players[i].getPieceLocation(), LAST_SQUARE);
+                    players[i].setPieceLocation(move);
                     printPlayersPositions();
                     return players[i].getPlayerName();
+                }
+                else if (move > LAST_SQUARE) {
+                    int back = move - LAST_SQUARE;
+                    move = LAST_SQUARE - back;
+                    printPath(players[i].getPieceLocation(), LAST_SQUARE - back);
+                    players[i].setPieceLocation(move);
+                //    previousMove = true;
+                //    i--;
                 }
                 else if(gameBoard.isLadder(move-1)){
                    Ladder ladder = gameBoard.getLadder(move);
@@ -153,13 +162,10 @@ public class SnakesAndLaddersGame {
                     printPath(players[i].getPieceLocation(), 1);
                     players[i].setPieceLocation(1);
                 }
-                else if (move >LAST_SQUARE) {
-                    int back = move - LAST_SQUARE;
-                    printPath(players[i].getPieceLocation(), LAST_SQUARE - back);
-                    players[i].setPieceLocation(LAST_SQUARE - back);
+                else if(move < LAST_SQUARE && move > 1) {
+                    printPath(players[i].getPieceLocation(), move);
+                    players[i].setPieceLocation(move);
                 }
-                printPath(players[i].getPieceLocation(), move);
-                players[i].setPieceLocation(move);
             }
             printPlayersPositions();
         }
