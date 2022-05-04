@@ -12,9 +12,11 @@ public class GameBoard {
             gameBoard[i] = new Square(i+1);
         }
     }
+
     public Square getSquare(int i){
         return  gameBoard[i];
     }
+
     public void addSnake(int length, int head){
         if(head<=0 || head > BOARD_SIZE) {
             System.out.println("The square is not within the board's boundaries!");
@@ -35,7 +37,6 @@ public class GameBoard {
             snakes[numberOfSnakes] = new Snake(length, head);
             gameBoard[head-1].setSnakeHead(true);
             ++numberOfSnakes;
-            gameBoard[head].setSnakeHead(true);
         }
 
     }
@@ -57,11 +58,10 @@ public class GameBoard {
             ladders[numberOfLadders] = new Ladder(length, bottom);
             gameBoard[bottom-1].setLadderBottom(true);
             ++numberOfLadders;
-            gameBoard[bottom].setLadderBottom(true);
         }
     }
     public Snake getSnake(int head){
-        for(int i = 0;i<numberOfSnakes;i++){
+        for(int i = 0;i < numberOfSnakes;i++){
             if(head == snakes[i].getHead()){
                 return snakes[i];
             }

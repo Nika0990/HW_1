@@ -6,7 +6,7 @@ public class SnakesAndLaddersGame {
 
     private Die die;
     private GameBoard gameBoard = new GameBoard();
-    private Player[] players = new Player [MAX_PLAYERS];
+    public Player[] players = new Player [MAX_PLAYERS];
     private int countPlayers = 0;
     private String[] takenNames = new String[MAX_PLAYERS];
     private Colors[] takenColors = new Colors[MAX_PLAYERS];
@@ -19,7 +19,7 @@ public class SnakesAndLaddersGame {
         this.die = new Die();
     }
 
-    private void addPlayer(String name, Colors color){
+    public void addPlayer(String name, Colors color){
         if(countPlayers == 5) {
             System.out.println("The maximal number of players is five!");
             return;
@@ -59,24 +59,7 @@ public class SnakesAndLaddersGame {
                 else return;
             }
             if (input[1].equals("player")) {
-                Colors color = null; //check
-                switch (input[3]) {
-                    case "red":
-                        color = Colors.RED;
-                        break;
-                    case "yellow":
-                        color = Colors.YELLOW;
-                        break;
-                    case "green":
-                        color = Colors.GREEN;
-                        break;
-                    case "blue":
-                        color = Colors.BLUE;
-                        break;
-                    case "orange":
-                        color = Colors.ORANGE;
-                        break;
-                }
+                Colors color = stringToColor(input[3]);
                 addPlayer(input[2], color);
             }
             else if (input[1].equals("ladder")) {
@@ -92,17 +75,52 @@ public class SnakesAndLaddersGame {
         }
 
         }
+
+    private Colors stringToColor(String colorName){
+        Colors color = null;
+        switch (colorName) {
+            case "red":
+                color = Colors.RED;
+                break;
+            case "yellow":
+                color = Colors.YELLOW;
+                break;
+            case "green":
+                color = Colors.GREEN;
+                break;
+            case "blue":
+                color = Colors.BLUE;
+                break;
+            case "orange":
+                color = Colors.ORANGE;
+                break;
+        }
+        return color;
+    }
+
+    private void printPlayersPositions(){
+        System.out.println("\n" + "Players positions on the board:");
+        for(int i = 0; i < countPlayers; i++)
+        {
+            System.out.println(players[i].getPlayerName() + " is in square number " + players[i].getPieceLocation());
+        }
+    }
+    private void printPath(int before, int after){
+        System.out.println("The path to the next square: " + before +
+                " -> " + after);
+    }
+
     public String start(){
         boolean previousMove = false;
         int move = 0;
         int movesCounter = 1;
         while(true){
-            for(int i = 0;i<countPlayers;i++){
+            System.out.println("------------------------- Round number "
+                    + movesCounter + "-------------------------");
+            movesCounter++;
+            for(int i = 0; i < countPlayers; i++){
                 if(!previousMove)
                 {
-                    System.out.println("------------------------- Round number "
-                            + movesCounter + "-------------------------");
-                    movesCounter++;
                     int roll = Die.roll();
                     move = roll + players[i].getPieceLocation();
                     System.out.print(players[i].getPlayerName() + " rolled " + roll +". " );
@@ -111,6 +129,8 @@ public class SnakesAndLaddersGame {
                     previousMove = false;
                 }
                 if(move  == LAST_SQUARE){
+                    printPath(players[i].getPieceLocation(), LAST_SQUARE);
+                    printPlayersPositions();
                     return players[i].getPlayerName();
                 }
                 else if(gameBoard.isLadder(move-1)){
@@ -130,19 +150,18 @@ public class SnakesAndLaddersGame {
                     i--;
                 }
                 else if ((move )<1) {
+                    printPath(players[i].getPieceLocation(), 1);
                     players[i].setPieceLocation(1);
                 }
                 else if (move >LAST_SQUARE) {
                     int back = move - LAST_SQUARE;
+                    printPath(players[i].getPieceLocation(), LAST_SQUARE - back);
                     players[i].setPieceLocation(LAST_SQUARE - back);
                 }
-
-
+                printPath(players[i].getPieceLocation(), move);
+                players[i].setPieceLocation(move);
             }
-
-
+            printPlayersPositions();
         }
-
     }
-
 }
