@@ -1,9 +1,11 @@
+import java.util.Objects;
+
 public class SnakesAndLaddersGame {
     private final static int MAX_PLAYERS = 5;
+    private final static int LAST_SQUARE = 100;
 
     private Die die;
     private GameBoard board;
-
     private Player[] players = new Player [MAX_PLAYERS];
     private int countPlayers = 0;
     private String[] takenNames = new String[MAX_PLAYERS];
@@ -23,11 +25,11 @@ public class SnakesAndLaddersGame {
         }
         for(int i = 0; i < MAX_PLAYERS; i++) {
             for(int j = 0; j < MAX_PLAYERS; j++) {
-                if(name == takenNames[i] && color == takenColors[j]) {
+                if(Objects.equals(name, takenNames[i]) && color == takenColors[j]) {
                     System.out.println("The name and the color are already taken!");
                     return;
                 }
-                if(name == takenNames[i]) {
+                if(Objects.equals(name, takenNames[i])) {
                     System.out.println("The name is already taken!");
                     return;
                 }
@@ -92,8 +94,27 @@ public class SnakesAndLaddersGame {
 
 
     public String start(){
+        int move;
+        while(true){
+            for(int i = 0;i<countPlayers;i++){
+                move = Die.roll();
+                if(move + players[i].getPieceLocation() == LAST_SQUARE){
+                    return players[i].getPlayerName();
+                }
+                else if ((move + players[i].getPieceLocation())<1) {
+                    players[i].setPieceLocation(1);
+                }
+                else if ((move + players[i].getPieceLocation())>LAST_SQUARE) {
+                    int back = move + players[i].getPieceLocation() - LAST_SQUARE;
+                    players[i].setPieceLocation(LAST_SQUARE - back);
+                }
 
-        return "Winners Name";
+
+            }
+
+
+        }
+
     }
 
 }

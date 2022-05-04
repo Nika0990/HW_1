@@ -1,6 +1,6 @@
 public class Die {
-  private int min;
-  private int max;
+  private static int min;
+  private static int max;
 
     public Die(int max,int min){
         this.min = min;
@@ -9,7 +9,7 @@ public class Die {
     public Die(){
         this(6,1);
     }
-    public int roll(){
+    public static int roll(){
         int random = Main.rnd.nextInt(max-min+1);
         return random+min;
     }

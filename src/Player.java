@@ -10,7 +10,11 @@ public class Player {
         return playerName;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public int getPieceLocation() {
+        return piece.getCurrentLocation();
+    }
+
+    public void setPieceLocation(int currentLocation) {
+        piece.setCurrentLocation(currentLocation);
     }
 }
