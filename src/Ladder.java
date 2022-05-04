@@ -2,8 +2,8 @@ public class Ladder {
     private int length;
     private int bottom;
 
-    public Ladder(int top, int bottom){
-        this.length = top;
+    public Ladder(int length, int bottom){
+        this.length = length;
 
         this.bottom = bottom;
 

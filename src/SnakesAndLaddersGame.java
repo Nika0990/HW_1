@@ -5,11 +5,12 @@ public class SnakesAndLaddersGame {
     private final static int LAST_SQUARE = 100;
 
     private Die die;
-    private GameBoard board;
+    private GameBoard gameBoard = new GameBoard();
     private Player[] players = new Player [MAX_PLAYERS];
     private int countPlayers = 0;
     private String[] takenNames = new String[MAX_PLAYERS];
     private Colors[] takenColors = new Colors[MAX_PLAYERS];
+
 
     public SnakesAndLaddersGame(int min, int max){
         this.die = new Die(max, min);
@@ -45,9 +46,8 @@ public class SnakesAndLaddersGame {
         countPlayers++;
     }
     public void initializeGame(){
-        GameBoard gameBoard = new GameBoard();
         while(true) {
-            String[] input = new String[4];
+            String[] input; //check
             String stringInput = Main.scanner.nextLine();
             input = stringInput.split(" ");
             if (input[0].equals("end")) {
@@ -86,26 +86,35 @@ public class SnakesAndLaddersGame {
             if (input[1].equals("snake")) {
                 int len = Integer.parseInt(input[2]);
                 int squareNumber = Integer.parseInt(input[3]);
-                gameBoard.addSnake(len, squareNumber);
+               gameBoard.addSnake(len, squareNumber);
             }
         }
 
         }
-
-
     public String start(){
-        int move;
         while(true){
             for(int i = 0;i<countPlayers;i++){
-                move = Die.roll();
-                if(move + players[i].getPieceLocation() == LAST_SQUARE){
+                int move = Die.roll() + players[i].getPieceLocation();
+                if(move  == LAST_SQUARE){
                     return players[i].getPlayerName();
                 }
-                else if ((move + players[i].getPieceLocation())<1) {
+                else if(gameBoard.isLadder(move-1)){
+                   Ladder ladder = gameBoard.getLadder(move);
+                   int len = ladder.getLength();
+                    players[i].setPieceLocation(move + len);
+                    i--;
+                }
+                else if(gameBoard.isSnake(move-1)){
+                    Snake snake = gameBoard.getSnake(move);
+                    int len = snake.getLength();
+                    players[i].setPieceLocation(move - len);
+                    i--;
+                }
+                else if ((move )<1) {
                     players[i].setPieceLocation(1);
                 }
-                else if ((move + players[i].getPieceLocation())>LAST_SQUARE) {
-                    int back = move + players[i].getPieceLocation() - LAST_SQUARE;
+                else if (move >LAST_SQUARE) {
+                    int back = move - LAST_SQUARE;
                     players[i].setPieceLocation(LAST_SQUARE - back);
                 }
 
