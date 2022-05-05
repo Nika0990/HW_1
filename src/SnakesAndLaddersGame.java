@@ -150,77 +150,71 @@ public class SnakesAndLaddersGame {
         }
     }
 
-    private boolean checkIfSnakeOrLadder(int location){
-
-
-        return false;
+    private int checkIfSnakeOrLadder(int location, int i){
+        int newLocation = location;
+        if(gameBoard.isLadder(location-1)) {
+            Ladder ladder = gameBoard.getLadder(location);
+            int len = ladder.getLength();
+            newLocation = location + len;
+        }
+        if(gameBoard.isSnake(location-1)) {
+            Snake snake = gameBoard.getSnake(location);
+            int len = snake.getLength();
+            newLocation = location - len;
+        }
+        return newLocation;
     }
 
-
-
-    public String start(){
-        boolean previousMove = false;
+    public String start() {
         int move = 0;
         int movesCounter = 1;
-        while(true){
+        while(true) {
             System.out.println("------------------------- Round number "
                     + movesCounter + " -------------------------");
             movesCounter++;
             for(int i = 0; i < countPlayers; i++){
-                if(!previousMove)
-                {
-                    int roll = Die.roll();
-                    move = roll + players[i].getPieceLocation();
-                    System.out.print(players[i].getPlayerName() + " rolled " + roll +". " );
-                    System.out.print("The path to the next square: " + players[i].getPieceLocation());
+                int roll = Die.roll();
+                move = roll + players[i].getPieceLocation();
+
+                System.out.print(players[i].getPlayerName() + " rolled " + roll +". " );
+                System.out.print("The path to the next square: " + players[i].getPieceLocation());
+
+                if (move > LAST_SQUARE) {
+                    int back = move - LAST_SQUARE;
+                    move = LAST_SQUARE - back;
+                    players[i].setPieceLocation(move);
+                    System.out.print(" -> " + players[i].getPieceLocation());
                 }
-                else {
-                    previousMove = false;
+                else if (move < 1) {
+                    move = 1;
+                    players[i].setPieceLocation(move);
+                    System.out.print(" -> " + players[i].getPieceLocation());
                 }
-                if(move  == LAST_SQUARE){
+                else if(move < LAST_SQUARE && move >= 1) {
+                    players[i].setPieceLocation(move);
+                    System.out.print(" -> " + players[i].getPieceLocation());
+                }
+                else if(move  == LAST_SQUARE){
                     players[i].setPieceLocation(move);
                     System.out.println(" -> " + players[i].getPieceLocation());
                     printPlayersPositions();
                     return players[i].getPlayerName();
                 }
-                else if (move > LAST_SQUARE) {
-                    int back = move - LAST_SQUARE;
-                    move = LAST_SQUARE - back;
-                    players[i].setPieceLocation(move);
-                    System.out.println(" -> " + players[i].getPieceLocation());
-                    previousMove = true;
-                    i--;
-                }
-                else if(gameBoard.isLadder(move-1)){
-                   Ladder ladder = gameBoard.getLadder(move);
-                   int len = ladder.getLength();
-                   players[i].setPieceLocation(move);
-                   System.out.print(" -> " + players[i].getPieceLocation());
-                   move = move + len;
-                   players[i].setPieceLocation(move);
-                   previousMove = true;
-                   i--;
-                }
-                else if(gameBoard.isSnake(move-1)){
-                    Snake snake = gameBoard.getSnake(move);
-                    int len = snake.getLength();
+
+                while ( gameBoard.isLadder(move-1) || gameBoard.isSnake(move-1) ){
+                    move = checkIfSnakeOrLadder(move, i);
                     players[i].setPieceLocation(move);
                     System.out.print(" -> " + players[i].getPieceLocation());
-                    move = move - len;
-                    players[i].setPieceLocation(move);
-                    previousMove = true;
-                    i--;
+                    if(players[i].getPieceLocation() == LAST_SQUARE) {
+                        System.out.println();
+                        printPlayersPositions();
+                        return players[i].getPlayerName();
+                    }
                 }
-                else if ((move )<1) {
-                    players[i].setPieceLocation(1);
-                    System.out.println(" -> " + players[i].getPieceLocation());
-                }
-                else if(move < LAST_SQUARE && move > 1) {
-                    players[i].setPieceLocation(move);
-                    System.out.println(" -> " + players[i].getPieceLocation());
-                }
+                System.out.println();
             }
             printPlayersPositions();
         }
     }
+
 }
