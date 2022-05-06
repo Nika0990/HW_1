@@ -7,16 +7,23 @@ public class GameBoard {
     private int numberOfSnakes = 0;
     private int numberOfLadders = 0;
 
+    /**
+     * This constructor is responsible for
+     * initializing the board
+     */
     public GameBoard(){
         for(int i = 0; i< BOARD_SIZE; i++){
             gameBoard[i] = new Square(i+1);
         }
     }
 
-    public Square getSquare(int i){
-        return  gameBoard[i];
-    }
-
+    /**
+     * This method adds a snake to the
+     * game board and to the "snakes" array
+     *
+     * @param length
+     * @param head
+     */
     public void addSnake(int length, int head){
         if(head<=0 || head > BOARD_SIZE) {
             System.out.println("The square is not within the board's boundaries!");
@@ -41,6 +48,13 @@ public class GameBoard {
 
     }
 
+    /**
+     *This method adds a ladder to the
+     *game board and to the "ladders" array
+     *
+     * @param length
+     * @param bottom
+     */
     public void addLadder(int length, int bottom){
         if(bottom<=0 || bottom > BOARD_SIZE) {
             System.out.println("The square is not within the board's boundaries!");
@@ -60,6 +74,14 @@ public class GameBoard {
             ++numberOfLadders;
         }
     }
+
+    /**
+     *This method is responsible for searching
+     * a specific snake according to its head
+     *
+     * @param head
+     * @return snake
+     */
     public Snake getSnake(int head){
         for(int i = 0;i < numberOfSnakes;i++){
             if(head == snakes[i].getHead()){
@@ -68,6 +90,14 @@ public class GameBoard {
         }
         return null;
     }
+
+    /**
+     *This method is responsible for searching a specific
+     *ladder according to its bottom
+     *
+     * @param bottom
+     * @return ladder
+     */
     public Ladder getLadder(int bottom){
         for(int i = 0;i<numberOfLadders;i++){
             if(bottom == ladders[i].getBottom()){
@@ -76,9 +106,27 @@ public class GameBoard {
         }
         return null;
     }
+
+    /**
+     *
+     * @param i (index)
+     * @return isSnakeHead
+     * (true if the square contains
+     * a snake head, otherwise
+     * returns false)
+     */
     public boolean isSnake(int i){
     return gameBoard[i].isSnakeHead();
     }
+
+    /**
+     *
+     * @param i (index)
+     * @return isLadderBottom
+     * (true if the square contains
+     * a ladder bottom, otherwise
+     * returns false)
+     */
     public boolean isLadder(int i){
         return gameBoard[i].isLadderBottom();
     }

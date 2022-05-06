@@ -2,6 +2,13 @@ public class Ladder {
     private int length;
     private int bottom;
 
+    /**
+     *  This constructor receives the two
+     *  parameters and sets the values
+     *  of bottom and length
+     * @param length
+     * @param bottom
+     */
     public Ladder(int length, int bottom){
         this.length = length;
 
@@ -9,19 +16,24 @@ public class Ladder {
 
     }
 
+    /**
+     *
+     * @return the coordinate
+     * of the square which
+     * contains the bottom
+     * of the ladder
+     */
     public int getBottom() {
         return bottom;
     }
 
-    public void setBottom(int bottom) {
-        this.bottom = bottom;
-    }
-
+    /**
+     *
+     * @return the length
+     * of the ladder
+     */
     public int getLength() {
         return length;
     }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
 }

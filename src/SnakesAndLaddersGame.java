@@ -11,14 +11,36 @@ public class SnakesAndLaddersGame {
     private String[] takenNames = new String[MAX_PLAYERS];
     private Colors[] takenColors = new Colors[MAX_PLAYERS];
 
-
+    /**
+     *This constructor sets
+     *the minimum and the maximum
+     *values for the die
+     *
+     * @param min
+     * @param max
+     */
     public SnakesAndLaddersGame(int min, int max){
         this.die = new Die(max, min);
     }
+
+    /**
+     *If we did not receive the values
+     *of minimum and maximum from the
+     *user his constructor sets their
+     *values to 1 and 6
+     */
     public SnakesAndLaddersGame(){
         this.die = new Die();
     }
 
+    /**
+     *This method is responsible for adding a new
+     * player to the game and foe counting the
+     * number of players
+     *
+     * @param name
+     * @param color
+     */
     public void addPlayer(String name, Colors color){
         if(countPlayers == 5) {
             System.out.println("The maximal number of players is five!");
@@ -50,6 +72,15 @@ public class SnakesAndLaddersGame {
         countPlayers++;
     }
 
+    /**
+     *This method initialize the game.
+     * This means that it is responsible
+     * for receiving the required
+     * information from the input,
+     * checks it and add players,
+     * initialize the game board
+     * with the help of another functions
+     */
     public void initializeGame(){
         System.out.println("Initializing the game...");
         while(true) {
@@ -84,6 +115,13 @@ public class SnakesAndLaddersGame {
 
         }
 
+    /**
+     * This method converts the string
+     * to the enum value
+     *
+     * @param colorName
+     * @return the enum value of the color
+     */
     private Colors stringToColor(String colorName){
         Colors color = null;
         switch (colorName) {
@@ -106,6 +144,10 @@ public class SnakesAndLaddersGame {
         return color;
     }
 
+    /**
+     *This method prints the position
+     * of the players after each move
+     */
     private void printPlayersPositions(){
         System.out.println("\n" + "Players positions on the board:");
         for(int i = 0; i < countPlayers; i++)
@@ -114,6 +156,11 @@ public class SnakesAndLaddersGame {
         }
     }
 
+    /**
+     * @param name1
+     * @param name2
+     * @return the difference between ASCII values of the letters in the names of players
+     */
     private int compareNames(String name1, String name2) {
         for (int i = 0; i < name1.length() && i < name2.length(); i++) {
             if ((int) name1.charAt(i) == (int) name2.charAt(i)) {
@@ -128,6 +175,13 @@ public class SnakesAndLaddersGame {
         return 0;
     }
 
+    /**
+     * This method swaps the names of the
+     * players in the array
+     *
+     * @param index1
+     * @param index2
+     */
     private void swapPlayers(int index1, int index2){
         String namePlaceHolder = players[index1].getPlayerName();
         Colors colorPlaceHolder = players[index1].getPieceColor();
@@ -139,6 +193,11 @@ public class SnakesAndLaddersGame {
         players[index2].setPieceColor(colorPlaceHolder);
     }
 
+    /**
+     *This method takes care of sorting
+     *the array with the names of
+     *the players
+     */
     private void arrangePlayers(){
         for(int i = 0; i < countPlayers; i++) {
             for(int j = 0; j < countPlayers - i - 1; j++) {
@@ -150,6 +209,17 @@ public class SnakesAndLaddersGame {
         }
     }
 
+    /**
+     *This method checks is there are a ladder
+     *or a snake in a specific square and
+     *update the current location of the
+     *game piece according to the given
+     *information
+     *
+     * @param location
+     * @param i (index)
+     * @return newLocation (the new location of the player)
+     */
     private int checkIfSnakeOrLadder(int location, int i){
         int newLocation = location;
         if(gameBoard.isLadder(location-1)) {
@@ -165,6 +235,12 @@ public class SnakesAndLaddersGame {
         return newLocation;
     }
 
+    /**
+     *This method is responsible for "playing the game".
+     * The main loop of the game is in this method.
+     *
+     * @return the name of the player who won the game
+     */
     public String start() {
         int move = 0;
         int movesCounter = 1;
@@ -175,7 +251,6 @@ public class SnakesAndLaddersGame {
             for(int i = 0; i < countPlayers; i++){
                 int roll = Die.roll();
                 move = roll + players[i].getPieceLocation();
-
                 System.out.print(players[i].getPlayerName() + " rolled " + roll +". " );
                 System.out.print("The path to the next square: " + players[i].getPieceLocation());
 
