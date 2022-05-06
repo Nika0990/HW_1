@@ -1,6 +1,4 @@
-/**
- *
- */
+
 public class Square {
     private int coordinate;
     private boolean isSnakeHead;

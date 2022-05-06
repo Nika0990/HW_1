@@ -77,8 +77,8 @@ public class SnakesAndLaddersGame {
      * This means that it is responsible
      * for receiving the required
      * information from the input,
-     * checks it and add players,
-     * initialize the game board
+     * checks it and adds players,
+     * initializes the game board
      * with the help of another functions
      */
     public void initializeGame(){
@@ -212,7 +212,7 @@ public class SnakesAndLaddersGame {
     /**
      *This method checks is there are a ladder
      *or a snake in a specific square and
-     *update the current location of the
+     *updates the current location of the
      *game piece according to the given
      *information
      *
