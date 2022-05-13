@@ -1,3 +1,6 @@
+/**
+ * Ladder element of the game. Leads player from its bottom up to its top.
+ */
 public class Ladder {
     private int length;
     private int bottom;
@@ -19,9 +22,9 @@ public class Ladder {
     /**
      *
      * @return the coordinate
-     * of the square which
-     * contains the bottom
-     * of the ladder
+     *      of the square which
+     *      contains the bottom
+     *      of the ladder
      */
     public int getBottom() {
         return bottom;
@@ -30,7 +33,7 @@ public class Ladder {
     /**
      *
      * @return the length
-     * of the ladder
+     *      of the ladder
      */
     public int getLength() {
         return length;

@@ -1,5 +1,8 @@
 import java.util.Objects;
 
+/**
+ * Main Snakes and Ladders game class. Performs a game on a board.
+ */
 public class SnakesAndLaddersGame {
     private final static int MAX_PLAYERS = 5;
     private final static int LAST_SQUARE = 100;
@@ -16,8 +19,8 @@ public class SnakesAndLaddersGame {
      *the minimum and the maximum
      *values for the die
      *
-     * @param min
-     * @param max
+     * @param min value of the die
+     * @param max value of the die
      */
     public SnakesAndLaddersGame(int min, int max){
         this.die = new Die(max, min);
@@ -38,8 +41,8 @@ public class SnakesAndLaddersGame {
      * player to the game and foe counting the
      * number of players
      *
-     * @param name
-     * @param color
+     * @param name of the new player
+     * @param color of the new players piece
      */
     public void addPlayer(String name, Colors color){
         if(countPlayers == 5) {
@@ -119,7 +122,7 @@ public class SnakesAndLaddersGame {
      * This method converts the string
      * to the enum value
      *
-     * @param colorName
+     * @param colorName name of color received from user
      * @return the enum value of the color
      */
     private Colors stringToColor(String colorName){
@@ -157,8 +160,10 @@ public class SnakesAndLaddersGame {
     }
 
     /**
-     * @param name1
-     * @param name2
+     * Method compares two names.
+     *
+     * @param name1 name of first player
+     * @param name2 name of second player
      * @return the difference between ASCII values of the letters in the names of players
      */
     private int compareNames(String name1, String name2) {
@@ -179,8 +184,8 @@ public class SnakesAndLaddersGame {
      * This method swaps the names of the
      * players in the array
      *
-     * @param index1
-     * @param index2
+     * @param index1 of player1
+     * @param index2 of player2
      */
     private void swapPlayers(int index1, int index2){
         String namePlaceHolder = players[index1].getPlayerName();
@@ -216,8 +221,8 @@ public class SnakesAndLaddersGame {
      *game piece according to the given
      *information
      *
-     * @param location
-     * @param i (index)
+     * @param location of the square to be checked
+     * @param i (index) of current player
      * @return newLocation (the new location of the player)
      */
     private int checkIfSnakeOrLadder(int location, int i){

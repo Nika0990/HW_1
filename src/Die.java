@@ -1,3 +1,6 @@
+/**
+ * A game die of any range of values.
+ */
 public class Die {
   private static int min;
   private static int max;
@@ -7,8 +10,8 @@ public class Die {
      * the minimum and the maximum
      * values for the die
      *
-     * @param max
-     * @param min
+     * @param max value of the die
+     * @param min value of the die
      */
     public Die(int max,int min){
         this.min = min;
@@ -28,7 +31,7 @@ public class Die {
     /**
      *
      * @return the random value
-     * which we received from the die
+     *         which we received from the die
      */
     public static int roll(){
         int random = Main.rnd.nextInt(max-min+1);

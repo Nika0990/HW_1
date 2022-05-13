@@ -1,3 +1,6 @@
+/**
+ * Player of the game. Has a name and a game piece for the game.
+ */
 public class Player {
     private String playerName;
     private GamePiece piece;
@@ -7,8 +10,8 @@ public class Player {
      * and creates a new piece for the player
      * according to the chosen color
      *
-     * @param playerName
-     * @param color
+     * @param playerName name of the new player
+     * @param color color of the new players piece
      */
     public Player(String playerName, Colors color){
         this.playerName = playerName;
@@ -35,8 +38,8 @@ public class Player {
     /**
      *
      * @return the current location
-     * of the game piece which
-     * belongs to this player
+     *      of the game piece which
+     *      belongs to this player
      */
     public int getPieceLocation() {
         return piece.getCurrentLocation();
@@ -46,7 +49,7 @@ public class Player {
      *This method helps us to set the location of the
      * game piece which belongs to this player
      *
-     * @param currentLocation
+     * @param currentLocation location of the players piece
      */
     public void setPieceLocation(int currentLocation) {
         piece.setCurrentLocation(currentLocation);
@@ -55,7 +58,7 @@ public class Player {
     /**
      *
      * @return the color of the game
-     * piece which belongs to this player
+     *      piece which belongs to this player
      */
     public Colors getPieceColor() {
         return piece.getColor();
@@ -66,7 +69,7 @@ public class Player {
      * of the game piece which belongs to
      * this player
      *
-     * @param color
+     * @param color color of the players piece
      */
     public void setPieceColor(Colors color) {
         piece.setColor(color);

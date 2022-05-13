@@ -1,3 +1,6 @@
+/**
+ *  Snake element of the game. Leads player from its head down to its tail.
+ */
 public class Snake {
     private int  length;
     private int head;
@@ -7,8 +10,8 @@ public class Snake {
      * parameters and sets the values
      * of head and length
      *
-     * @param length
-     * @param head
+     * @param length length of the snake
+     * @param head location of the snakes head
      */
     public Snake(int length, int head){
         this.length = length;
@@ -30,7 +33,7 @@ public class Snake {
     /**
      *
      * @return the length
-     * of the snake
+     *      of the snake
      */
     public int getLength() {
         return length;

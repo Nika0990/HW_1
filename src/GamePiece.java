@@ -1,3 +1,6 @@
+/**
+ * Game piece of the game, performs movements on the game board.
+ */
 public class GamePiece {
 
     private Colors color;
@@ -7,7 +10,7 @@ public class GamePiece {
      * This constructor sets the color
      * and coordinates of the game piece
      *
-     * @param color
+     * @param color color of the piece
      */
     public GamePiece(Colors color){
         currentLocation = 1;
@@ -18,7 +21,7 @@ public class GamePiece {
     /**
      *
      * @return currentLocation
-     * (the current location of the game piece)
+     *      (the current location of the game piece)
      */
     public int getCurrentLocation() {
         return currentLocation;
@@ -28,7 +31,7 @@ public class GamePiece {
      * This method helps us to set
      * the location of the game piece
      *
-     * @param currentLocation
+     * @param currentLocation location of the piece
      */
     public void setCurrentLocation(int currentLocation) {
         this.currentLocation = currentLocation;
@@ -37,7 +40,7 @@ public class GamePiece {
     /**
      *
      * @return the color
-     * of the game piece
+     *      of the game piece
      */
     public Colors getColor() {
         return color;
@@ -47,7 +50,7 @@ public class GamePiece {
      * This method helps us to set
      * the color of the game piece
      *
-     * @param color
+     * @param color color of the piece
      */
     public void setColor(Colors color) {
         this.color = color;

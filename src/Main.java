@@ -1,33 +1,15 @@
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.Random;
 import java.util.Scanner;
 
-/*
-public class Main {
-    public static Random rnd;       // Note: Do not change this line.
-    public static Scanner scanner;  // Note: Do not change this line.
-    public static void main(String[] args) throws IOException {
-
-        rnd = new Random(42);
-
-
-    }
-}
-
-*/
-
 
 public class Main {
     public static Random rnd;       // Note: Do not change this line.
     public static Scanner scanner;  // Note: Do not change this line.
     public static void main(String[] args) throws IOException {
-        String path = "D:\\OneDrive - Technion\\Semester 2\\Soft Engeneering\\HW1_files\\HW1_input.txt";
-
-        PrintStream fileOut = new PrintStream("D:\\OneDrive - Technion\\Semester 2\\Soft Engeneering\\HW1_files\\tryout.txt");
-        System.setOut(fileOut);
+          String path = args[0];
 
         scanner = new Scanner(new File(path));
         int numberOfGames = scanner.nextInt();
